@@ -6,11 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import semi.main.Properties;
+
 public class BoardDAO {
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String username = "c##trav";
-	private String password = "trav";
+	Properties properties;
 	
 	private Connection con;
 	private PreparedStatement pstmt;
@@ -20,7 +19,7 @@ public class BoardDAO {
 	
 	public BoardDAO() {
 		try {
-			Class.forName(driver);
+			Class.forName(properties.getDriver());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -28,7 +27,7 @@ public class BoardDAO {
 	
 	public void getConnection() {
 		try {
-			con = DriverManager.getConnection(url, username, password);
+			con = DriverManager.getConnection(properties.getUrl(), properties.getUsername(), properties.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
