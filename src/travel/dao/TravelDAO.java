@@ -36,5 +36,7 @@ public class TravelDAO {
 	public static TravelDAO getInstance() {
 		return instance;
 	}
+	
+	
 
 }
