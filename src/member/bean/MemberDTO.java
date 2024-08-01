@@ -20,19 +20,29 @@ public class MemberDTO {
 	@NonNull
 	private String name;
 	@NonNull
-	private String phone;
-	@NonNull
-	private String address;
-	@NonNull
 	private String id;
 	@NonNull
 	private String pwd;
+	@NonNull
+	private String phone;
+	@NonNull
+	private String address;
 	private int admin;
+	
+	public void clear() {
+		this.memberNo = 0;
+		this.name = null;
+		this.id = null;
+		this.pwd = null;
+		this.phone = null;
+		this.address = null;
+		this.admin = 0;
+	}
 	
 	@Override
 	public String toString() {
-		return "회원 번호 : " + memberNo + " 이름 : " + name + " 핸드폰 : " + phone + " 주소 : " + address
-				+ " 아이디 : " + id + " 비밀번호 : " + pwd + " 관리자 : " + admin;
+		return "회원 번호 : " + memberNo + " 이름 : " + name + " 아이디 : " + id + " 비밀번호 : " + pwd + " 핸드폰 : " + phone 
+				+ " 주소 : " + address + " 관리자 : " + admin;
 	}
 	
 	

@@ -3,8 +3,6 @@ package member.service.admin;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import board.bean.BoardDTO;
-import board.dao.BoardDAO;
 import member.bean.MemberDTO;
 import member.dao.MemberDAO;
 import member.service.Member;
