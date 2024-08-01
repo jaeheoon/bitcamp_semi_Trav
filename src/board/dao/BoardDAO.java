@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import semi.main.Properties;
 
 public class BoardDAO {
-	Properties properties;
+	Properties properties = new Properties();
 	
 	private Connection con;
 	private PreparedStatement pstmt;

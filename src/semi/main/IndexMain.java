@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import board.service.Board;
 import board.service.BoardMenu;
+import member.bean.MemberDTO;
 import member.service.Member;
 import member.service.MemberMenu;
 import travel.service.Travel;
@@ -13,6 +14,7 @@ public class IndexMain {
 	Board board;
 	Member member;
 	Travel travel;
+	static MemberDTO memberDTO = new MemberDTO();
 	
 	public void menu() {
 		Scanner sc = new Scanner(System.in);
@@ -24,22 +26,22 @@ public class IndexMain {
 		System.out.println();
 		while(true) {
 			System.out.println("-----------------------목록-----------------------");
-			System.out.println("  1.회원메뉴|2.여행지메뉴|3.게시물메뉴|4.종료  ");
+			System.out.println("  1.회원메뉴|2.여행지메뉴|3.게시물메뉴|0.종료  ");
 			System.out.println("--------------------------------------------------");
 			System.out.print("선택> ");
 			num = sc.nextInt();
-			if(num == 4) break;
+			if(num == 0) break;
 			if(num == 1) {
 				member = new MemberMenu();
-				member.execute();
+				member.execute(memberDTO);
 			}
 			else if(num == 2) {
 				travel = new TravelMenu();
-				travel.execute();
+				travel.execute(memberDTO);
 			}
 			else if(num == 3) {
 				board = new BoardMenu();
-				board.execute();
+				board.execute(memberDTO);
 			}
 			else {
 				System.out.println("1 ~ 4번을 입력해주세요");
