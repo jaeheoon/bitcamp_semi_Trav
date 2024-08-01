@@ -37,4 +37,26 @@ public class BoardDAO {
 		return instance;
 	}
 
+	public boolean write(String travelno, String subject, String content, String memberno) {
+		boolean ck = false;
+		int su = 0;
+		getConnection();
+		StringBuilder sb = new StringBuilder();
+		sb.append("insert into board values(review_seq.nextvql,?,?,?,?,sysdate)");
+		try {
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1,travelno);
+			pstmt.setString(2,subject);
+			pstmt.setString(3,content);
+			pstmt.setString(4,memberno);
+			su = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(su>0) ck = true;
+		return ck;
+	}
+	
+	
+
 }
