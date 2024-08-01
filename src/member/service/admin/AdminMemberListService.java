@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 import member.bean.MemberDTO;
 import member.dao.MemberDAO;
-import member.service.Member;
+import semi.main.Interfa;
 
-public class AdminMemberListService implements Member {
+public class AdminMemberListService implements Interfa {
 	
 	@Override
 	public void execute(MemberDTO memberDTO) {
@@ -19,7 +19,6 @@ public class AdminMemberListService implements Member {
 		System.out.println("-------------------------------------------------------------------------");
 		System.out.println("회원번호\t이름\t아이디\t번호\t주소");
 		System.out.println("-------------------------------------------------------------------------");
-		System.out.println(list);
 		for (MemberDTO memberDTO2 : list) {
 			System.out.println(memberDTO2.getMemberNo() + "\t" 
 							 + memberDTO2.getName() + "\t" 

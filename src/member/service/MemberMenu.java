@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 import member.bean.MemberDTO;
 import member.service.admin.AdminMenu;
+import semi.main.Interfa;
 
-public class MemberMenu implements Member{
-	Member member;
+public class MemberMenu implements Interfa {
+	Interfa interfa;
 
 	@Override
 	public void execute(MemberDTO memberDTO) {
@@ -25,17 +26,17 @@ public class MemberMenu implements Member{
 			System.out.print("선택> ");
 			num = sc.nextInt();
 				 if (num == 0) break;
-				 if (num == 1) member = new WriteMemberService();
-			else if (num == 2) member = new LoginMemberService();
-			else if (num == 3) member = new UpdateMemberService();
-			else if (num == 4) member = new LogoutMemberService();
-			else if (num == 5) member = new DeleteMemberService();
-			else if (num == 6) member = new AdminMenu();
+				 if (num == 1) interfa = new WriteMemberService();
+			else if (num == 2) interfa = new LoginMemberService();
+			else if (num == 3) interfa = new UpdateMemberService();
+			else if (num == 4) interfa = new LogoutMemberService();
+			else if (num == 5) interfa = new DeleteMemberService();
+			else if (num == 6 && memberDTO.getAdmin() == 1) interfa = new AdminMenu();
 			else {
 				System.out.println("1 ~ 6번을 입력해주세요");
 				continue;
 			}
-			member.execute(memberDTO);
+			interfa.execute(memberDTO);
 			System.out.println();
 		}
 	}

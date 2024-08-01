@@ -3,8 +3,9 @@ package board.service;
 import java.util.Scanner;
 
 import member.bean.MemberDTO;
+import semi.main.Interfa;
 
-public class BoardMenu implements Board{
+public class BoardMenu implements Interfa{
 
 	@Override
 	public void execute(MemberDTO memberDTO) {

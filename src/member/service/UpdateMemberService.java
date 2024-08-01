@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 import member.bean.MemberDTO;
 import member.dao.MemberDAO;
+import semi.main.Interfa;
 
-public class UpdateMemberService implements Member {
+public class UpdateMemberService implements Interfa {
 	private String id;
 	private String pwd;
 	private String type;

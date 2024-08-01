@@ -1,8 +1,9 @@
 package member.service;
 
 import member.bean.MemberDTO;
+import semi.main.Interfa;
 
-public class LogoutMemberService implements Member {
+public class LogoutMemberService implements Interfa {
 
 	@Override
 	public void execute(MemberDTO memberDTO) {
