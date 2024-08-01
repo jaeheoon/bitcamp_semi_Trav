@@ -31,7 +31,7 @@ public class BoardWrite implements Board {
 				System.out.println("작성하신 글이 등록되었습니다.");
 			}
 			else System.out.println("글 등록에 실패하였습니다");
-		}else System.out.println("여행지, 제목, 내용, 작성자에 빈탄이 있습니다. 다시 입력해주세요");
+		}else System.out.println("여행지, 제목, 내용, 작성자에 빈칸이 있습니다. 다시 입력해주세요");
 		
 		
 

@@ -25,20 +25,26 @@ public class BoardMenu implements Board{
 			
 			System.out.println("------------게시판------------");
 			System.out.println("----------------------------");
-			System.out.println("     1. 후기 목록 ");
-			System.out.println("     2. 후기 추가 ");
-			System.out.println("     3. 내용 검색 ");
-			System.out.println("     4. 내용 수정 ");
-			System.out.println("     5. 후기 삭제 ");
+			System.out.println("     1. 후기 작성 ");
+			System.out.println("     2. 후기 수정 ");
+			System.out.println("     3. 별점 남기기");
+			System.out.println("     4. 후기 삭제 ");
+			System.out.println("     5. 후기 검색 ");
 			System.out.println("     0. 이전 메뉴 ");
 			System.out.println("----------------------------");
 			System.out.print("   선택 > ");
 			num = sc.nextInt();
 			
 			if(num == 0) break;
-			if(num == 1) board = new BoardList();
-			else if(num==2) board = new BoardWrite();
-				
+			if(num == 1) board = new BoardWrite();
+			else if(num==2) board = new BoardUpdate();
+			//else if(num==3) board = new BoardLike();	
+			else if(num==4) board = new BoardDelete();
+			else if(num==5) board = new BoardSearch();
+			else {
+				System.out.println("0 ~ 5를 입력해주세요");
+				continue;
+			}
 		}
 	}
 

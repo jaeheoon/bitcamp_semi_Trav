@@ -13,7 +13,7 @@ import lombok.Setter;
 public class BoardDTO {
 	
 	private int review_no,travel_no,member_no;
-	private String comment, content, subject, date;
+	private String comment, content, subject, date,continent;
 	
 	
 	
