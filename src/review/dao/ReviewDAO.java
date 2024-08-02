@@ -66,7 +66,7 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ReviewDTO newReviewDTO = new ReviewDTO();
-				newReviewDTO.setReviewNo(rs.getString("reviewNo"));
+				newReviewDTO.setReviewNo(rs.getInt("reviewNo"));
 				newReviewDTO.setTravelName(rs.getString("travelName"));
 				newReviewDTO.setContinent(rs.getString("continent"));
 				newReviewDTO.setSubject(rs.getString("subject"));
@@ -89,6 +89,31 @@ public class ReviewDAO {
 			}
 		}
 		return list;
+	}
+
+	public int write(ReviewDTO reviewDTO) {
+		int su = 0;
+		getConnection();
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO REVIEW(REVIEW_NO, TRAVEL_NAME, CONTINENT, MEMBER_ID, SUBJECT, CONTENT) VALUES (REVIEW_SEQUENCE.nextval, ?, ?, ?, ?, ?)");
+		try {
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, reviewDTO.getTravelName());
+			pstmt.setString(2, reviewDTO.getContinent());
+			pstmt.setString(3, reviewDTO.getMemberId());
+			
+			su = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return su;
 	}
 
 }

@@ -34,6 +34,7 @@ public class UpdateTravelService implements Interfa {
 		if (travelDAO.isExist("travel_name", name)) {
 			while(true) {
 				System.out.println();
+				list = travelDAO.viewSearchList("travel_name", "");
 				System.out.println("여행지명\t대륙명\t평점\t설명");
 				for (TravelDTO travelDTO : list) {
 					System.out.println(travelDTO.getName() + "\t"

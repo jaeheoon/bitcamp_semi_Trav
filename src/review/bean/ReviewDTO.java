@@ -1,20 +1,26 @@
 package review.bean;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReviewDTO {
-	private String reviewNo;
+	private int reviewNo;
+	@NonNull
 	private String travelName;
+	@NonNull
 	private String continent;
+	@NonNull
 	private String memberId;
+	@NonNull
 	private String subject;
+	@NonNull
 	private String content;
 	private String reviewComment;
 	private String date;
