@@ -3,7 +3,6 @@ package semi.menu;
 import java.util.Scanner;
 
 import member.bean.MemberDTO;
-import member.dao.MemberDAO;
 import review.bean.ReviewDTO;
 import review.dao.ReviewDAO;
 import semi.main.Interfa;
@@ -45,13 +44,14 @@ public class WriteReviewService implements Interfa {
 		sc.nextLine();
 		ReviewDTO reviewDTO = new ReviewDTO(travel, continent, memberDTO.getId(), subject, content);
 		
-		reviewDAO.write(reviewDTO);
+		su += reviewDAO.write(reviewDTO);
+		su += reviewDAO.like(travel, memberDTO.getId(), like);
 		
 		if(su != 0) {
-			System.out.println("회원가입 완료");
-			System.out.println(memberDTO.toString());
+			System.out.println("글 작성 완료");
+			System.out.println(reviewDTO.toString());
 		}
-		else System.out.println("회원가입 실패");
+		else System.out.println("글 작성 실패");
 	}
 
 }

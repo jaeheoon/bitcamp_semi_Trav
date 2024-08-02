@@ -101,7 +101,8 @@ public class ReviewDAO {
 			pstmt.setString(1, reviewDTO.getTravelName());
 			pstmt.setString(2, reviewDTO.getContinent());
 			pstmt.setString(3, reviewDTO.getMemberId());
-			
+			pstmt.setString(4, reviewDTO.getSubject());
+			pstmt.setString(5, reviewDTO.getContent());
 			su = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -114,6 +115,140 @@ public class ReviewDAO {
 			}
 		}
 		return su;
+	}
+
+	public int like(String travel, String id, int like) {
+		int su = 0;
+		getConnection();
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO FUNCTION(FUNCTION_NO, TRAVEL_NAME, ID, FUNC_LIKE) VALUES (FUNCTION_SEQUENCE.nextval, ?, ?, ?)");
+		try {
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, travel);
+			pstmt.setString(2, id);
+			pstmt.setInt(3, like);
+			su = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return su;
+	}
+
+	public boolean updateFunclike(int no, int value, String id) {
+		StringBuilder sb = new StringBuilder();
+		boolean ck = false;
+		getConnection();
+		
+		sb.append("UPDATE FUNCTION f ");
+	    sb.append("SET f.FUNC_LIKE = ? ");
+	    sb.append("WHERE f.TRAVEL_NAME = ( ");
+	    sb.append("    SELECT r.TRAVEL_NAME ");
+	    sb.append("    FROM REVIEW r ");
+	    sb.append("    WHERE r.REVIEW_NO = ? ");
+	    sb.append("      AND r.TRAVEL_NAME = f.TRAVEL_NAME ");
+	    sb.append("      AND r.MEMBER_ID = f.ID ) ");
+	    sb.append("  AND f.ID = ?");
+		
+		try {
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, value);
+			pstmt.setInt(2, no);
+			pstmt.setString(3, id);
+			if(pstmt.executeUpdate() > 0) ck = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ck;
+	}
+
+	public boolean updateReview(int no, String type, String value, String id) {
+		StringBuilder sb = new StringBuilder();
+		boolean ck = false;
+		getConnection();
+		
+		sb.append("UPDATE TRAVEL SET "+type+" = ? WHERE MEMBER_ID = ? AND REVIEW_NO = ?");
+		
+		try {
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setString(1, value);
+			pstmt.setString(2, id);
+			pstmt.setInt(3, no);
+			if(pstmt.executeUpdate() > 0) ck = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ck;
+	}
+
+	public boolean deleteReview(int no) {
+		boolean ck = false;
+		StringBuilder sb = new StringBuilder();
+		getConnection();
+		sb.append("delete review where review_no = ?");
+		try {
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() > 0) ck = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return ck;
+	}
+	
+	public boolean deleteLike(int no) {
+		boolean ck = false;
+		StringBuilder sb = new StringBuilder();
+		getConnection();
+		sb.append("delete function where function_no = ?");
+		try {
+			pstmt = con.prepareStatement(sb.toString());
+			
+			pstmt.setInt(1, no);
+			
+			if(pstmt.executeUpdate() > 0) ck = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return ck;
 	}
 
 }

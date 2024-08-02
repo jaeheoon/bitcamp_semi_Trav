@@ -37,8 +37,8 @@ public class ReviewMenu implements Interfa{
 			else if(num == 1) interfa = new ListReviewService();
 			else if(num == 2) interfa = new SearchReviewService();
 			else if(num == 3) interfa = new WriteReviewService();
-//			else if(num == 4) interfa = new SearchTravelService();
-//			else if(num == 5) interfa = new SearchTravelService();
+			else if(num == 4) interfa = new UpdateReviewService();
+			else if(num == 5) interfa = new DeleteReviewService();
 			else if(num == 6 && memberDTO.getAdmin() == 1) interfa = new AdminMenu();
 			else {
 				System.out.println("1 ~ 5번을 입력해주세요");
