@@ -24,9 +24,9 @@ public class UpdateMemberService implements Interfa {
 		pwd = sc.next();
 		
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		memberDTO = memberDAO.loginInfo(id, pwd, memberDTO);
 		if (memberDTO != null) {
 			while(true) {
+				memberDTO = memberDAO.loginInfo(id, pwd, memberDTO);
 				System.out.println("이름\t아이디\t비밀번호\t휴대폰번호\t주소");
 				System.out.print(memberDTO.getName() + "\t"
 						+ memberDTO.getId() + "\t"
