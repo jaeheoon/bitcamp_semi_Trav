@@ -185,17 +185,7 @@ public class MemberDAO {
 		boolean ck = false;
 		getConnection();
 		
-		if(type.equals("name")) {
-			sb.append("UPDATE MEMBER SET NAME = ? WHERE ID = ? and PWD = ?");
-		} else if (type.equals("id")) {
-			sb.append("UPDATE MEMBER SET ID = ? WHERE ID = ? and PWD = ?");
-		} else if (type.equals("pwd")) {
-			sb.append("UPDATE MEMBER SET PWD = ? WHERE ID = ? and PWD = ?");
-		} else if (type.equals("phone")) {
-			sb.append("UPDATE MEMBER SET PHONE = ? WHERE ID = ? and PWD = ?");
-		} else if (type.equals("address")) {
-			sb.append("UPDATE MEMBER SET ADDRESS = ? WHERE ID = ? and PWD = ?");
-		}
+		sb.append("UPDATE MEMBER SET "+type+" = ? WHERE ID = ? and PWD = ?");
 		
 		try {
 			pstmt = con.prepareStatement(sb.toString());

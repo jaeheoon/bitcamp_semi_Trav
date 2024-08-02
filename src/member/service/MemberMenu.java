@@ -16,13 +16,13 @@ public class MemberMenu implements Interfa {
 		
 		while(true) {
 			System.out.println();
-			System.out.println("---------------------------------------회원 메뉴-------------------------------------");
+			System.out.println("---------------------------------------------회원 메뉴-------------------------------------");
 			if (memberDTO.getName() != null) {
 				System.out.print("  1.회원가입|2.로그인|3.회원정보 수정|4.로그아웃|5.회원 탈퇴");
 				if(memberDTO.getAdmin() == 0 && memberDTO.getName() != null) System.out.print("|0.이전메뉴  \n");
 				else if(memberDTO.getAdmin() == 1 && memberDTO.getName() != null) System.out.print("|6.관리자모드|0.이전메뉴  \n");
 			} else System.out.println("  1.회원가입|2.로그인|0.이전메뉴");
-			System.out.println("-------------------------------------------------------------------------------------");
+			System.out.println("-------------------------------------------------------------------------------------------");
 			System.out.print("선택> ");
 			num = sc.nextInt();
 				 if (num == 0) break;
@@ -38,6 +38,7 @@ public class MemberMenu implements Interfa {
 			}
 			interfa.execute(memberDTO);
 			System.out.println();
+			break;
 		}
 	}
 
