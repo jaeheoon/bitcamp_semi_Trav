@@ -1,10 +1,11 @@
-package travel.service;
+package semi.menu;
 
 import java.util.Scanner;
 
 import member.bean.MemberDTO;
-import member.service.admin.AdminMenu;
 import semi.main.Interfa;
+import travel.service.ListTravelService;
+import travel.service.SearchTravelService;
 
 public class TravelMenu implements Interfa{
 	Interfa interfa;
@@ -24,7 +25,7 @@ public class TravelMenu implements Interfa{
 		while(true) {
 			System.out.println();
 			System.out.println("---------------------------------------여행지 메뉴-------------------------------------");
-			System.out.print("  1.여행지목록|2.여행지검색");
+			System.out.print("   1.여행지목록|2.여행지검색");
 			if(memberDTO.getAdmin() == 1) System.out.print("|3.관리자모드|0.이전메뉴  \n");
 			else System.out.print("|0.이전메뉴  \n");
 			System.out.println("---------------------------------------------------------------------------------------");

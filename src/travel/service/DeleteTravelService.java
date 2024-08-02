@@ -1,10 +1,11 @@
-package member.service.admin;
+package travel.service;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import member.bean.MemberDTO;
-import member.dao.MemberDAO;
 import semi.main.Interfa;
+import travel.bean.TravelDTO;
 import travel.dao.TravelDAO;
 
 public class DeleteTravelService implements Interfa {
@@ -16,7 +17,14 @@ public class DeleteTravelService implements Interfa {
 		String name = "";
 		
 		System.out.println("여행지명\t대륙명\t평점\t설명");
-		travelDAO.viewSearchList("name", "");
+		ArrayList<TravelDTO> list = travelDAO.viewSearchList("travel_name", "");
+		for (TravelDTO travelDTO : list) {
+			System.out.println(travelDTO.getName() + "\t"
+							 + travelDTO.getContinent() + "\t" 
+							 + travelDTO.getLike() + "\t"
+							 + travelDTO.getContent());
+		}
+		System.out.println();
 		System.out.println();
 		System.out.print("삭제할 여행지 이름 : ");
 		name = sc.nextLine();

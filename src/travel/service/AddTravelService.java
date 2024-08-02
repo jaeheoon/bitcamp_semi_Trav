@@ -17,11 +17,17 @@ public class AddTravelService implements Interfa {
 		Scanner sc = new Scanner(System.in);
 		TravelDAO travelDAO = TravelDAO.getInstance();
 		boolean check = false;
-		
-		System.out.println();
-		System.out.print("여행지명 입력 : ");
-		name = sc.nextLine();
-		
+		do {
+			System.out.println();
+			System.out.print("여행지명 입력 : ");
+			name = sc.nextLine();
+			check = travelDAO.isExist("travel_name", name);
+			if(!check) {
+				System.out.println("확인되었습니다");
+				break;
+			}
+			else System.out.println("이미 있는 나라입니다");
+		} while(!check);
 		do {
 			travelDAO.continentList();
 			System.out.print("대륙명 입력 : ");

@@ -13,7 +13,7 @@ public class ListTravelService implements Interfa {
 	@Override
 	public void execute(MemberDTO memberDTO) {
 		TravelDAO travelDAO = TravelDAO.getInstance();
-		ArrayList<TravelDTO> list = travelDAO.viewSearchList("name", "");
+		ArrayList<TravelDTO> list = travelDAO.viewSearchList("travel_name", "");
 		
 		System.out.println("---------------------------------------------------------------------------------------");
 		System.out.println("  여행지명\t대륙\t평점\t설명");

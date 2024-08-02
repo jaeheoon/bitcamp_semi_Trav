@@ -91,7 +91,7 @@ public class TravelDAO {
 		int su = 0;
 		getConnection();
 		StringBuilder sb = new StringBuilder();
-		sb.append("INSERT INTO TRAVEL(TRAVEL_NO, NAME, CONTINENT, CONTENT) VALUES (travel_sequence.nextval, ?, ?, ?)");
+		sb.append("INSERT INTO TRAVEL(travel_name, CONTINENT, CONTENT) VALUES (?, ?, ?)");
 		try {
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, travelDTO.getName());
@@ -115,23 +115,23 @@ public class TravelDAO {
 		StringBuilder sb = new StringBuilder();
 		ArrayList<TravelDTO> list = new ArrayList<>();
 		getConnection();
-		sb.append("SELECT t.name, t.travel_no, t.continent, avg_likes.avg_like, t.content ");
+		sb.append("SELECT t.travel_name, t.continent, avg_likes.avg_like, t.content ");
 		sb.append("FROM travel t ");
-		sb.append("LEFT OUTER JOIN FUNCTION f ON t.travel_no = f.travel_no ");
+		sb.append("LEFT OUTER JOIN FUNCTION f ON t.travel_name = f.travel_name ");
 		sb.append("LEFT OUTER JOIN ( ");
-		sb.append("    SELECT travel_no, AVG(func_like) AS avg_like ");
+		sb.append("    SELECT travel_name, AVG(func_like) AS avg_like ");
 		sb.append("    FROM FUNCTION ");
-		sb.append("    GROUP BY travel_no ");
-		sb.append(") avg_likes ON t.travel_no = avg_likes.travel_no ");
+		sb.append("    GROUP BY travel_name ");
+		sb.append(") avg_likes ON t.travel_name = avg_likes.travel_name ");
 		sb.append("WHERE t."+type+" like ? ");
-		sb.append("GROUP BY t.name, t.travel_no, t.continent, avg_likes.avg_like, t.content ");
+		sb.append("GROUP BY t.travel_name, t.continent, avg_likes.avg_like, t.content ");
 		try {
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, "%"+value+"%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				TravelDTO newTravelDTO = new TravelDTO();
-				newTravelDTO.setName(rs.getString("name"));
+				newTravelDTO.setName(rs.getString("travel_name"));
 				newTravelDTO.setContent(rs.getString("content"));
 				newTravelDTO.setContinent(rs.getString("continent"));
 				newTravelDTO.setLike(rs.getDouble("avg_like"));
@@ -156,7 +156,7 @@ public class TravelDAO {
 		boolean ck = false;
 		getConnection();
 		
-		sb.append("UPDATE TRAVEL SET "+type+" = ? WHERE NAME = "+name);
+		sb.append("UPDATE TRAVEL SET "+type+" = ? WHERE travel_name = '"+name+"'");
 		
 		try {
 			pstmt = con.prepareStatement(sb.toString());
@@ -179,7 +179,7 @@ public class TravelDAO {
 		boolean ck = false;
 		StringBuilder sb = new StringBuilder();
 		getConnection();
-		sb.append("delete travel where name = ?");
+		sb.append("delete travel where travel_name = ?");
 		try {
 			pstmt = con.prepareStatement(sb.toString());
 			
