@@ -180,7 +180,7 @@ public class ReviewDAO {
 		boolean ck = false;
 		getConnection();
 		
-		sb.append("UPDATE TRAVEL SET "+type+" = ? WHERE MEMBER_ID = ? AND REVIEW_NO = ?");
+		sb.append("UPDATE REVIEW SET "+type+" = ? WHERE MEMBER_ID = ? AND REVIEW_NO = ?");
 		
 		try {
 			pstmt = con.prepareStatement(sb.toString());

@@ -1,11 +1,13 @@
 package semi.menu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import member.bean.MemberDTO;
 import review.bean.ReviewDTO;
 import review.dao.ReviewDAO;
 import semi.main.Interfa;
+import travel.bean.TravelDTO;
 import travel.dao.TravelDAO;
 
 public class WriteReviewService implements Interfa {
@@ -25,6 +27,16 @@ public class WriteReviewService implements Interfa {
 		
 		System.out.println();
 		do {
+			ArrayList<TravelDTO> list = travelDAO.viewSearchList("travel_name", "");
+			System.out.println();
+			System.out.println("---------------------------------------------------------------------------------------");
+			System.out.println("  작성 가능한 여행지명\t대륙명");
+			System.out.println("---------------------------------------------------------------------------------------");
+			for (TravelDTO travelDTO : list) {
+				System.out.println(travelDTO.getName() + "\t"
+								 + travelDTO.getContinent());
+			}
+			System.out.println();
 			System.out.print("작성할 나라 입력 : ");
 			travel = sc.nextLine();
 			check = travelDAO.isExist("travel_name", travel);

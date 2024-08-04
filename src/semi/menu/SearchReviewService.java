@@ -29,7 +29,7 @@ public class SearchReviewService implements Interfa {
 			some = sc.nextLine();
 			System.out.println("검색결과 : ");
 				 if (num == 1) Search("subject", some);
-			else if (num == 2) Search("content", some);
+			else if (num == 2) Search("r.content", some);
 			else if (num == 3) Search("name", some);
 			else {
 				System.out.println("1 ~ 3번을 입력해주세요");
@@ -44,13 +44,14 @@ public class SearchReviewService implements Interfa {
 		ArrayList<ReviewDTO> list = reviewDAO.viewSearchList(type, value);
 		System.out.println();
 		System.out.println("---------------------------------------------------------------------------------------");
-		System.out.println("  번호\t여행지명\t대륙명\t제목\t댓글\t평점\t작성자\t작성날짜");
+		System.out.println("  번호\t여행지명\t대륙명\t제목\t내용\t댓글\t평점\t작성자\t작성날짜");
 		System.out.println("---------------------------------------------------------------------------------------");
 		for (ReviewDTO reviewDTO : list) {
 			System.out.println(reviewDTO.getReviewNo() + "\t"
 							 + reviewDTO.getTravelName() + "\t" 
 							 + reviewDTO.getContinent() + "\t"
 							 + reviewDTO.getSubject() + "\t"
+							 + reviewDTO.getContent() + "\t"
 							 + reviewDTO.getLike() + "\t"
 							 + reviewDTO.getMemberId() + "\t"
 							 + reviewDTO.getDate());

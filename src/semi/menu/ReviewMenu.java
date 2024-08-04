@@ -26,7 +26,7 @@ public class ReviewMenu implements Interfa{
 		while(true) {
 			System.out.println();
 			System.out.println("---------------------------------------게시판 메뉴-------------------------------------");
-			System.out.print("   1.게시판목록|2.게시판검색|3.게시판작성|4.게시판수정|5.게시판삭제");
+			System.out.print("   1.게시판목록|2.게시판검색|3.게시판작성|4.게시판 및 평점 수정|5.게시판삭제");
 			if(memberDTO.getAdmin() == 1) System.out.print("|6.관리자모드|0.이전메뉴  \n");
 			else System.out.print("|0.이전메뉴  \n");
 			System.out.println("---------------------------------------------------------------------------------------");

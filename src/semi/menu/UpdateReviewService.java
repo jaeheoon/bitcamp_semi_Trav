@@ -9,7 +9,6 @@ import review.dao.ReviewDAO;
 import semi.main.Interfa;
 
 public class UpdateReviewService implements Interfa {
-	private String id;
 	private String pwd;
 	private int like;
 	private String type;
@@ -46,19 +45,21 @@ public class UpdateReviewService implements Interfa {
 								 + reviewDTO.getDate());
 			}
 			System.out.println();
+			System.out.print("1.여행지명|2.대륙명|3.제목|4.내용|5.평점|0.취소\n");
+			System.out.print("선택>");
+			num = sc.nextInt();
+			sc.nextLine();
+			if(num == 0) {
+				System.out.println("취소되었습니다. 다시 시도해주세요");
+				break;
+			}
 			
 			System.out.print("변경할 게시판 번호 선택\n");
 			System.out.print("선택>");
 			selNo = sc.nextInt();
 			sc.nextLine();
-			System.out.print("1.여행지명|2.대륙명|3.제목|4.내용|5.평점|6.취소\n");
-			System.out.print("선택>");
-			num = sc.nextInt();
-			sc.nextLine();
-			if(num == 6) {
-				System.out.println("취소되었습니다. 다시 시도해주세요");
-				break;
-			} else if(num == 1) {
+			
+			 if(num == 1) {
 				System.out.print("수정할 여행지명 : ");
 				value = sc.nextLine();
 				type = "travel_name";
@@ -77,11 +78,11 @@ public class UpdateReviewService implements Interfa {
 			} else if(num == 5) {
 				System.out.print("수정할 평점 : ");
 				like = sc.nextInt();
-				boolean ck = reviewDAO.updateFunclike(selNo, like, id);
+				boolean ck = reviewDAO.updateFunclike(selNo, like, memberDTO.getId());
 				if(ck) System.out.println("수정되었습니다");
 				break;
 			}
-			boolean ck = reviewDAO.updateReview(selNo, type, value, id);
+			boolean ck = reviewDAO.updateReview(selNo, type, value, memberDTO.getId());
 			if(ck) System.out.println("수정되었습니다");
 		}
 		
